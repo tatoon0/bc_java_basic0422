@@ -75,7 +75,7 @@ public class Bank {
             Account duplicateAccount = findAccount(ano);
             if (duplicateAccount == null) { // 동일한 계좌번호가 없다면
                 exit = true;
-            } else {
+            } else { // 동일한 계좌번호가 있다면
                 System.out.println("이미 존재하는 계좌번호 입니다\n다른 계좌번호를 입력해주세요");
             }
         }
@@ -110,18 +110,19 @@ public class Bank {
     public static void remit() {
 //        두 계좌 정보 확인
         Account from, to;
+
         System.out.println("송금하실 계좌의 계좌번호를 입력해주세요");
         from = findAccount(scanner.next());
         if (from == null) {
             System.out.println("해당 계좌가 존재하지 않습니다");
             return;
-        } else {
-            System.out.println("송금받을 계좌의 계좌번호를 입력해주세요");
-            to = findAccount(scanner.next());
-            if (to == null) {
-                System.out.println("해당 계좌가 존재하지 않습니다");
-                return;
-            }
+        }
+
+        System.out.println("송금받을 계좌의 계좌번호를 입력해주세요");
+        to = findAccount(scanner.next());
+        if (to == null) {
+            System.out.println("해당 계좌가 존재하지 않습니다");
+            return;
         }
 
 //        송금액 확인
@@ -131,12 +132,13 @@ public class Bank {
             System.out.println("잔액이 부족합니다");
             return;
         } // 잔액이 부족할 시 종료
+
         from.setBalance(from.getBalance() - money);
         to.setBalance(to.getBalance() + money);
         System.out.println("송금이 완료되었습니다");
     }
 
-//    계좌번호 찾기
+//    계좌 찾기 (select * from account where ano = ?)
     public static Account findAccount(String ano) {
         return accounts.stream()
                 .filter(
