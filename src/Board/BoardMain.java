@@ -10,11 +10,11 @@ public class BoardMain {
     static ArrayList<Board> boardArray = new ArrayList<>();
 
     public static void main(String[] args) {
-        BoardDAO boardDAO = new BoardDAO(boardArray);
-        boardDAO.create(new Board("제목1","내용1","작성자1"));
-        boardDAO.create(new Board("제목2","내용2","작성자2"));
-        boardDAO.create(new Board("제목3","내용3","작성자3"));
-        boardDAO.create(new Board("제목4","내용4","작성자4"));
+        BoardDAO boardDAO = new BoardDAO();
+//        boardDAO.create(new Board("제목1","내용1","작성자1"));
+//        boardDAO.create(new Board("제목2","내용2","작성자2"));
+//        boardDAO.create(new Board("제목3","내용3","작성자3"));
+//        boardDAO.create(new Board("제목4","내용4","작성자4"));
 
 
 
@@ -31,14 +31,17 @@ public class BoardMain {
                     String content = scanner.nextLine();
                     System.out.print("작성자를 입력해주세요 : ");
                     String writer = scanner.nextLine();
-                    boardDAO.create(new Board(title, content, writer));
+
+                    boardDAO.createD(new Board(title, content, writer));
                 } // case 1
 
                 case 2 -> { // 전체글 보기
-                    AtomicInteger count = new AtomicInteger(1);
-                    boardDAO.findAll().forEach(board -> {
-                        System.out.println("글번호 : " + count.getAndIncrement() + "\t| 제목 : " + board.getTitle());
-                    });
+//                    AtomicInteger count = new AtomicInteger(1);
+//                    boardDAO.findAll().forEach(board -> {
+//                        System.out.println("글번호 : " + count.getAndIncrement() + "\t| 제목 : " + board.getTitle());
+//                    });
+
+                    boardDAO.findAllD().forEach(System.out::println);
                 } // case 2
 
                 case 3 -> { // 게시물 보기
