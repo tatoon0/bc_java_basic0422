@@ -1,7 +1,6 @@
 package Board;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,8 +14,6 @@ public class BoardMain {
 //        boardDAO.create(new Board("제목2","내용2","작성자2"));
 //        boardDAO.create(new Board("제목3","내용3","작성자3"));
 //        boardDAO.create(new Board("제목4","내용4","작성자4"));
-
-
 
         boolean exit = false;
         while(!exit) {
@@ -48,7 +45,7 @@ public class BoardMain {
                     System.out.print("읽으실 글 번호를 입력해주세요 : ");
                     int num = scanner.nextInt();
                     scanner.nextLine(); // 버퍼지우기
-                    Board board = boardDAO.findOne(num);
+                    Board board = boardDAO.findOneD(num);
                     if (board == null) {
                         System.out.println("해당 게시물이 존재하지 않습니다");
                         continue;
@@ -61,26 +58,26 @@ public class BoardMain {
                     System.out.print("수정할 게시물 번호를 입력해주세요 : ");
                     int num = scanner.nextInt();
                     scanner.nextLine(); // 버퍼지우기
-                    Board board = boardDAO.findOne(num);
+                    Board board = boardDAO.findOneD(num);
                     if (board == null) {
                         System.out.println("해당 게시물이 존재하지 않습니다");
                         continue;
                     }
                     System.out.println("내용을 재작성해주세요");
                     String content = scanner.nextLine();
-                    boardDAO.update(board, content);
+                    boardDAO.updateD(board, content);
                 } // case 4
 
                 case 5 -> { // 게시물 삭제
                     System.out.print("삭제할 게시물 번호를 입력해주세요 : ");
                     int num = scanner.nextInt();
                     scanner.nextLine(); // 버퍼지우기
-                    Board board = boardDAO.findOne(num);
+                    Board board = boardDAO.findOneD(num);
                     if (board == null) {
                         System.out.println("해당 게시물이 존재하지 않습니다");
                         continue;
                     }
-                    boardDAO.delete(board);
+                    boardDAO.deleteD(board);
                     System.out.println("게시물이 삭제되었습니다");
                 } // case 5
 
